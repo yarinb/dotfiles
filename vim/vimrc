@@ -1,0 +1,192 @@
+"
+" Vim settings for @yarinb
+"
+" Set main configuration directory, and where cache is stored.
+let $VIMPATH = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+let $VARPATH = expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache').'/vim')
+
+" Search and use environments specifically made for Neovim.
+if isdirectory($VARPATH.'/venv/neovim2')
+	let g:python_host_prog = $VARPATH.'/venv/neovim2/bin/python'
+endif
+if isdirectory($VARPATH.'/venv/neovim3')
+	let g:python3_host_prog = $VARPATH.'/venv/neovim3/bin/python'
+endif
+
+"
+" Set augroup
+augroup MyAutoCmd
+	autocmd!
+	autocmd CursorHold *? syntax sync minlines=300
+augroup END
+"
+" Install plugins first.
+" Not to be confused with the contents of ~/.vim/plugin/* which are
+" configuration options for each plugin and automatically loaded by Vim.
+
+source ~/.vim/plugin/plugins.vim
+
+" Leader Mappings
+map <Space> <leader>
+map <Leader>w :update<CR>
+map <Leader>q :qall<CR>
+map <Leader>gs :Gstatus<CR>
+
+syntax enable
+set t_ut=
+set autoread                          " Auto reload changed files
+set wildmenu                          " Tab autocomplete in command mode
+set backspace=indent,eol,start        " http://vi.stackexchange.com/a/2163
+set clipboard=unnamed                 " Clipboard support (OSX)
+set laststatus=2                      " Show status line on startup
+set splitright                        " Open new splits to the right
+set splitbelow                        " Open new splits to the bottom
+set lazyredraw                        " Reduce the redraw frequency
+set ttyfast                           " Send more characters in fast terminals
+set nowrap                            " Don't wrap long lines
+set nobackup nowritebackup noswapfile " Turn off backup files
+set errorbells visualbell             " Turn off visual and audible bells
+set expandtab shiftwidth=4 tabstop=4  " Four spaces for tabs everywhere
+set softtabstop=4
+set smarttab                          " Tab insert blanks according to 'shiftwidth'
+set autoindent                        " Use same indenting on new lines
+set smartindent                       " Smart autoindenting on new lines
+set shiftround                        " Round indent to multiple of 'shiftwidth'
+set history=1000
+set hlsearch                          " Highlight search results
+set ignorecase smartcase              " Search queries intelligently set case
+set incsearch                         " Show search results as you type
+set magic
+set timeoutlen=1000 ttimeoutlen=0     " Remove timeout when hitting escape
+set showcmd                           " Show size of visual selection
+set synmaxcol=1000           " Don't syntax highlight long lines
+set formatoptions+=1         " Don't break lines after a one-letter word
+set formatoptions-=t         " Don't auto-wrap text
+if has('patch-7.3.541')
+  set formatoptions+=j     " Remove comment leader when joining lines
+endif
+if has('patch-7.4.427')
+    set ut=750
+endif
+silent! set ttymouse=xterm3           " Mouse support in terminal
+set mouse=a
+set ruler                             " show ruler in statusline
+
+" Persistent undo
+set undodir=$VARPATH.'/undo'
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+set undofile
+set undolevels=1000
+set undoreload=10000
+
+" Ignored files/directories from autocomplete
+set nowildmenu
+set wildmode=list:longest,full
+set wildoptions=tagfile
+set wildignore+=.git,.hg,.svn,.stversions,*.pyc,*.spl,*.o,*.out,*~,%*
+set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store
+set wildignore+=**/node_modules/**,**/bower_modules/**,*/.sass-cache/*
+set wildignore+=application/vendor/**,**/vendor/ckeditor/**,media/vendor/**
+set wildignore+=__pycache__,*.egg-info
+
+" Folds
+set foldlevel=99
+
+"-------------------------------------------------------------------------------
+" Interface
+"-------------------------------------------------------------------------------
+
+set number            " Enable line numbers
+set scrolloff=2       " Leave 2 lines of buffer when scrolling
+set sidescrolloff=5   " Leave 5 characters of horizontal buffer when scrolling
+set list              " Show hidden characters
+"set noshowmode        " Don't show -- INSERT -- below statusline
+set colorcolumn=90    " column marker at 80 chars
+set fillchars=vert:│,fold:─
+set listchars=tab:\▏\ ,extends:→,precedes:←,nbsp:␣,trail:·
+set showtabline=2
+set nojoinspaces
+
+if has('patch-7.4.338')
+  set showbreak=↪
+  set breakindent
+  set breakindentopt=sbr
+endif
+
+if has('termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+function! s:statusline_expr()
+  let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
+  let ro  = "%{&readonly ? '[RO] ' : ''}"
+  let ft  = "%{len(&filetype) ? '['.&filetype.'] ' : ''}"
+  let fug = "%{exists('g:loaded_fugitive') ? fugitive#statusline() : ''}"
+  let sep = ' %= '
+  let pos = ' %-10(%l:%c%V%) '
+  let pct = ' %P'
+
+  return '[%n] %F %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
+endfunction
+"let &statusline = s:statusline_expr()
+"-------------------------------------------------------------------------------
+" Colors, Fonts & Formatting
+"-------------------------------------------------------------------------------
+if has('gui_running')
+  set guifont=Operator\ Mono\ Book:h14 columns=80 lines=40
+endif
+"set background=dark
+if (has("termguicolors"))
+    set termguicolors
+endif
+"let g:seoul256_background = 234
+set background=dark
+silent! colorscheme hybrid
+
+"------------------------------------------------------------------------------
+" Mapping
+"------------------------------------------------------------------------------
+nnoremap <silent> <Leader><Enter> :nohlsearch<cr>
+" jk | Escaping!
+inoremap jk <Esc>
+
+" Make Y behave like other capitals
+nnoremap Y y$
+
+" qq to record, Q to replay
+nnoremap Q @q
+
+" indent without kill the selection in vmode
+vmap < <gv
+vmap > >gv
+
+autocmd FileType help noremap <buffer> q :q<cr>
+
+"------------------------------------------------------------------------------
+" vimrc config
+"------------------------------------------------------------------------------
+augroup vimrc
+  autocmd!
+  autocmd BufWritePost vimrc source $MYVIMRC
+  autocmd BufWritePost */.vim/* source $MYVIMRC
+augroup END
+
+"-------------------------------------------------------------------------------
+" Neovim-specific configurations
+"-------------------------------------------------------------------------------
+
+if has('nvim')
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  set termguicolors
+
+  " Fix vim-tmux-navigator <C-h> https://git.io/viGRU
+  nmap <BS> <C-W>h
+
+  " Fix vim-tmux-navigator <C-h> https://git.io/vS5QH
+  nmap <BS> :<C-u>TmuxNavigateLeft<CR>
+  source $VIMPATH/neovim.vim
+endif
