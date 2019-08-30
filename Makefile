@@ -17,7 +17,7 @@ endif
 all: brew zsh tmux vim git psqlrc sublime-text
 
 brew:
-	which brew || ruby -e ${HOMEBRE}
+	which brew || ruby -e ${HOMEBREW}
 	brew tap homebrew/bundle
 	brew bundle
 	brew update
@@ -27,11 +27,12 @@ zsh:
 	if [ ! -d ~/.oh-my-zsh/.git ]; then \
 		git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh; \
 	fi
+	ln -sfv ${BASE_DIR}/.zshrc ${HOME}/.zshrc
+	ln -sfv ${BASE_DIR}/zsh/custom ${HOME}/.zsh-custom
+	mkdir -p ${HOME}/.zsh-custom/plugins
 	cd ${HOME}/.zsh-custom/plugins/ && rm -rf zsh-syntax-highlighting && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 	cd ${HOME}/.zsh-custom/plugins/ && rm -rf zsh-completions && git clone https://github.com/zsh-users/zsh-completions
 	cd ${HOME}/.zsh-custom/plugins/ && rm -rf zsh-history-substring-search && git clone https://github.com/zsh-users/zsh-history-substring-search.git
-	ln -sfv ${BASE_DIR}/.zshrc ${HOME}/.zshrc
-	ln -sfv ${BASE_DIR}/zsh/custom ${HOME}/.zsh-custom
 
 tmux:
 	ln -sfv ${BASE_DIR}/.tmux.conf ${HOME}/.tmux.conf

@@ -3,3 +3,5 @@
 *.swp
 tags
 zsh/custom/plugins/
+.tern-port
+tags

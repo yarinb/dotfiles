@@ -7,7 +7,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="yarinb"
+ZSH_THEME="steeef"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -60,13 +60,14 @@ ZSH_CUSTOM=${HOME}/.zsh-custom
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  git-prompt
+  # git-prompt
   docker
-  virtualenv
-  fzf
-  zsh-completions
-  zsh-history-substring-search
-  zsh-syntax-highlighting
+  #virtualenv
+  pyenv
+  # fzf
+  # zsh-completions
+  # zsh-history-substring-search
+  # zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -99,5 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+alias vi=vim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
