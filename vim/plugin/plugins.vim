@@ -16,8 +16,6 @@ Plug 'nathanaelkane/vim-indent-guides', { 'on': [ 'IndentGuidesEnable', 'IndentG
 " Indent guides enable
 let g:indent_guides_enable_on_vim_startup=1
 "Plug 'itchyny/lightline.vim'
-let g:gutentags_trace = 1
-
 Plug 'ludovicchabant/vim-gutentags'
 
 " Completion
