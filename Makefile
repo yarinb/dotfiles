@@ -18,7 +18,6 @@ all: brew zsh tmux vim git psqlrc sublime-text
 
 brew:
 	which brew || ruby -e ${HOMEBREW}
-	brew tap homebrew/bundle
 	brew bundle
 	brew update
 
@@ -39,6 +38,7 @@ tmux:
 
 vim:
 	ln -snfv ${BASE_DIR}/vim ${HOME}/.vim
+	ln -snfv ${BASE_DIR}/vim ${HOME}/.config/nvim
 
 git:
 	rm -f ${HOME}/.gitconfig.local

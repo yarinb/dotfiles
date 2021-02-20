@@ -145,7 +145,7 @@ if (has("termguicolors"))
 endif
 "let g:seoul256_background = 234
 set background=dark
-silent! colorscheme hybrid
+silent! colorscheme gruvbox
 
 "------------------------------------------------------------------------------
 " Mapping
