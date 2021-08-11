@@ -74,8 +74,8 @@ plugins=(
 	docker 
 	docker-compose 
 	ripgrep 
-	pyenv
-	zsh-syntax-highlighting
+	#pyenv
+	#zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -87,7 +87,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-Preferred editor for local and remote sessions
+# Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
@@ -110,11 +110,14 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias vi=vim
-export PATH="/usr/local/opt/node@10/bin:$PATH"
-
+export PATH="/usr/local/opt/node@14/bin:$PATH"
+export SPARK_HOME="$HOME/develop/bin/spark-3.1.1-bin-hadoop2.7"
+export PATH="$HOME/.okta/bin:$SPARK_HOME/bin:$PATH"
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export PYSPARK_DRIVER_PYTHON=jupyter
+export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
 
 alias h='cd ~/develop/code/honeyfy'
-
+alias vim=nvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

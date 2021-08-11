@@ -29,9 +29,9 @@ zsh:
 	ln -sfv ${BASE_DIR}/.zshrc ${HOME}/.zshrc
 	ln -sfv ${BASE_DIR}/zsh/custom ${HOME}/.zsh-custom
 	mkdir -p ${HOME}/.zsh-custom/plugins
-	cd ${HOME}/.zsh-custom/plugins/ && rm -rf zsh-syntax-highlighting && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+	#cd ${HOME}/.zsh-custom/plugins/ && rm -rf zsh-syntax-highlighting && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 	cd ${HOME}/.zsh-custom/plugins/ && rm -rf zsh-completions && git clone https://github.com/zsh-users/zsh-completions
-	cd ${HOME}/.zsh-custom/plugins/ && rm -rf zsh-history-substring-search && git clone https://github.com/zsh-users/zsh-history-substring-search.git
+	#cd ${HOME}/.zsh-custom/plugins/ && rm -rf zsh-history-substring-search && git clone https://github.com/zsh-users/zsh-history-substring-search.git
 
 tmux:
 	ln -sfv ${BASE_DIR}/.tmux.conf ${HOME}/.tmux.conf

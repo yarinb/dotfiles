@@ -137,7 +137,7 @@ endfunction
 " Colors, Fonts & Formatting
 "-------------------------------------------------------------------------------
 if has('gui_running')
-  set guifont=Operator\ Mono\ Book:h14 columns=80 lines=40
+  set guifont=Menlo:h14 columns=80 lines=40
 endif
 "set background=dark
 if (has("termguicolors"))
