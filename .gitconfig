@@ -36,3 +36,8 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+[init]
+	defaultBranch = master
+[user]
+	name = Yarin Benado
+	email = yarin.benado@gong.io

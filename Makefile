@@ -13,8 +13,8 @@ ifeq ($(UNAME_S),Darwin)
 endif
 
 
-.PHONY: brew zsh tmux vim git psqlrc sublime-text
-all: brew zsh tmux vim git psqlrc sublime-text
+.PHONY: brew zsh tmux vim git psqlrc
+all: brew zsh tmux vim git psqlrc
 
 brew:
 	which brew || ruby -e ${HOMEBREW}

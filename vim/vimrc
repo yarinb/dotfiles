@@ -103,7 +103,7 @@ set scrolloff=2       " Leave 2 lines of buffer when scrolling
 set sidescrolloff=5   " Leave 5 characters of horizontal buffer when scrolling
 set list              " Show hidden characters
 "set noshowmode        " Don't show -- INSERT -- below statusline
-set colorcolumn=90    " column marker at 80 chars
+"set colorcolumn=90    " column marker at 80 chars
 set fillchars=vert:│,fold:─
 set listchars=tab:\▏\ ,extends:→,precedes:←,nbsp:␣,trail:·
 set showtabline=2

@@ -53,5 +53,5 @@ Plug 'tpope/vim-fugitive'
 
 " Themes
 Plug 'morhetz/gruvbox'
-
+Plug 'dracula/vim'
 call plug#end()

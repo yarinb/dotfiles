@@ -94,30 +94,29 @@ else
   export EDITOR='nvim'
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias vi=vim
-export PATH="/usr/local/opt/node@14/bin:$PATH"
-export SPARK_HOME="$HOME/develop/bin/spark-3.1.1-bin-hadoop2.7"
-export PATH="$HOME/.okta/bin:$SPARK_HOME/bin:$PATH"
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-export PYSPARK_DRIVER_PYTHON=jupyter
-export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
+alias ls="exa --icons --sort type -a"
+alias ll="exa --icons --long --sort type -a"
+alias l="exa --icons --long --sort type -a"
+
+alias cat=bat
+alias grep=rg
+alias find=fd
+
+export PATH="$HOME/.okta/bin:$PATH"
 
 alias h='cd ~/develop/code/honeyfy'
+alias d='cd ~/develop/code/dbt'
 alias vim=nvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+export JAVA_11_HOME='/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home'
+
+alias java8='export JAVA_HOME=$JAVA_8_HOME'
+alias java11='export JAVA_HOME=$JAVA_11_HOME'
+
+# default to Java 11
+java11
