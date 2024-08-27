@@ -13,11 +13,11 @@ export ZSH=$HOME/.oh-my-zsh
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 #bindkey '^w' autosuggest-execute
-#bindkey '^e' autosuggest-accept
+bindkey '^ ' autosuggest-accept
 #bindkey '^u' autosuggest-toggle
 #bindkey '^L' vi-forward-word
-#bindkey '^k' up-line-or-search
-#bindkey '^j' down-line-or-search
+# bindkey '^k' up-line-or-search
+# bindkey '^j' down-line-or-search
 
 bindkey jj vi-cmd-mode
 
@@ -34,12 +34,11 @@ plugins=(
 	fzf 
 	docker 
 	docker-compose 
-	ripgrep 
 	pyenv
 )
 
 # no need for that right now - plugins managed manually
-#source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -97,12 +96,14 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 
 export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
 export JAVA_11_HOME='/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home'
+export JAVA_17_HOME='/Library/Java/JavaVirtualMachines/amazon-corretto-17.jdk/Contents/Home'
 
 alias java8='export JAVA_HOME=$JAVA_8_HOME'
 alias java11='export JAVA_HOME=$JAVA_11_HOME'
-
-# default to Java 11
-java11
+alias java17='export JAVA_HOME=$JAVA_17_HOME'
+alias italics='echo -e "\e[3mfoo\e[23m"'
+# default to Java 17
+java17
 
 export PGPASSWORD=postgres
 
